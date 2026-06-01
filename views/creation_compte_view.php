@@ -5,8 +5,8 @@
 <meta charset="UTF-8">
 
 <nav> 
-<a id="CRERR COMPTES" href="../creation_compte_view.php">CRER COMPTES</a>
-<a id="MODIFIER COMPTES" href="../modif_comptes_view.php">MODIFIER COMPTES</a>
+<a id="CRERR_COMPTES" href="../creation_compte_view.php">CRER COMPTES</a>
+<a id="MODIFIER_COMPTES" href="../modif_comptes_view.php">MODIFIER COMPTES</a>
 </nav>
 <h2>Ajout d'un nouveau compte</h2>
 <form action="index.php?route=add_utilisateurs" method="post"> 
@@ -30,12 +30,12 @@
     </p>
 
 <p>
-        NOM DEP : <input type="text" name=nomdep" required>
+        NOM DEP : <input type="text" name="nomdep" required>
         </p>
 
 
         <p>
-        n°tel : <input type="text" name=n°tel" required>
+        n°tel : <input type="text" name=num_tel" required>
     </p>
     
     
