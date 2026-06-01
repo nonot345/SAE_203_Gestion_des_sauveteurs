@@ -33,7 +33,6 @@
 
         case '':
             require('views/welcome_view.php');
-            login_form_view($route);
             break;
             
         case 'families':
