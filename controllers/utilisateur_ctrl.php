@@ -39,4 +39,3 @@ function add_utilisateurs_write_ctrl() {
         }
     }
 }
-?>
