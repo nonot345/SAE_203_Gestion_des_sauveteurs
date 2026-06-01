@@ -25,9 +25,10 @@
     
     //We switch to the good controller
     switch ($route) {
+
+    
         case null:
             require('views/login_views.php');
-            login_form_view($route);
             break;
 
         case '':
