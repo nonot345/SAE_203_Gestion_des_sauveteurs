@@ -68,6 +68,16 @@
             require('controllers/auth_ctrl.php');
             logout_ctrl();
             break;
+
+        case 'add_utilisateurs_form':
+            require('controllers/utilisateur_ctrl.php');
+            add_utilisateurs_form_ctrl();
+            break;
+
+        case 'add_utilisateurs':
+             require('controllers/utilisateur_ctrl.php');
+            add_utilisateurs_write_ctrl();
+            break;
                   
         default:
             require('views/404_view.php');
