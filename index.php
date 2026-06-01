@@ -28,7 +28,7 @@
 
     
         case null:
-            require('views/login_views.php');
+            require('views/welcome_view.php');
             break;
 
         case '':
