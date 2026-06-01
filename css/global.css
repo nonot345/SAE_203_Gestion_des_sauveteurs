@@ -1,0 +1,115 @@
+@CHARSET "UTF-8";
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f3efe7;
+    color: #2e2e2a;
+    margin: 0;
+}
+
+/* HEADER */
+header { background: #fff; border-bottom: 1px solid #d9d2c0; }
+
+.header-top {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 15px 20px;
+}
+
+.header-top a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: #3b4a2e;
+    font-size: 1.2rem;
+}
+
+.header-top img { height: 45px; }
+
+/* NAVIGATION */
+nav { background: #f8f6f0; border-bottom: 2px solid #c49a3c; }
+
+nav ul {
+    max-width: 1000px;
+    margin: 0 auto;
+    list-style: none;
+    display: flex;
+    padding: 0 10px;
+}
+
+nav a {
+    display: block;
+    padding: 10px 20px;
+    color: #4a4030;
+    text-decoration: none;
+}
+
+nav a:hover { color: #c49a3c; }
+nav a.nav-right { margin-left: auto; }
+
+/* BARRE SESSION */
+.session-bar {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 4px 20px;
+    text-align: right;
+    font-size: 0.8rem;
+    color: #8b7a5c;
+}
+
+/* NOTIFICATION */
+#notification {
+    max-width: 1000px;
+    margin: 10px auto 0 auto;
+    padding: 10px 20px;
+    background: #edf7ed;
+    color: #3a5a3a;
+    border-left: 4px solid #6a9f6a;
+}
+
+/* CONTENU */
+article {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px 30px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #e0dbce;
+}
+
+article h2 { color: #3b4a2e; margin-top: 0; }
+
+/* TABLEAUX */
+table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+table th { background: #f8f6f0; color: #3b4a2e; padding: 10px; text-align: left; border-bottom: 2px solid #c49a3c; }
+table td { padding: 8px 10px; border-bottom: 1px solid #e8e2d2; }
+
+/* FORMULAIRES */
+form label { display: inline-block; min-width: 140px; }
+form input[type="text"],
+form input[type="password"],
+form input[type="date"],
+form select { padding: 5px 10px; border: 1px solid #d0cbb8; border-radius: 4px; }
+form input[type="submit"] {
+    background: #c49a3c; color: #fff; border: none;
+    padding: 8px 25px; border-radius: 4px; cursor: pointer;
+}
+form input[type="submit"]:hover { background: #b38a2e; }
+
+/* FOOTER */
+footer {
+    background: #f8f6f0;
+    border-top: 2px solid #c49a3c;
+    color: #8b7a5c;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 0.8rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+    nav ul { flex-wrap: wrap; justify-content: center; }
+    nav a { padding: 8px 15px; font-size: 0.9rem; }
+    article { margin: 10px 5px; padding: 15px; }
+}
