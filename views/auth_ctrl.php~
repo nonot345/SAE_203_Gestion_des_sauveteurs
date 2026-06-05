@@ -1,0 +1,65 @@
+<?php
+
+/**
+ * Auth controller
+ */
+function login_ctrl() {
+    $ask_route = null;
+    if (isset($_GET['ask'])) {
+        $ask_route = htmlentities($_GET['ask']);
+    }
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        verify_login_ctrl($ask_route);
+    } else {
+        login_form_ctrl($ask_route);
+    }
+}
+
+
+/**
+* Authentication form display controller
+*/
+function login_form_ctrl(?string $route) {
+    require('views/login_view.php');
+    login_form_view($route);
+}
+
+
+/**
+* Authentication processing
+*/
+function verify_login_ctrl(?string $route) {
+    // unexpected characters treatment with htmlentities() function
+    $login = htmlentities($_POST['login']);
+    $passwd = htmlentities($_POST['passwd']);
+
+    //Ce code est un exemple, en réalité l'authentification sera faite depuis une base ou annuaire LDAP en interrogeant le CRUD !
+    //Compte admin
+    if ($login == 'admin' && $passwd == 'admin') {
+        $_SESSION['login'] = $login;
+        $_SESSION['role'] = 'admin';
+        //On redirige vers la route demandée qui a provoqué la demande d'authentification
+        header('Location: index.php?route=' . $route);
+    //Compte etudiant
+    } elseif ($login == 'etudiant' && $passwd == 'etudiant') {
+        $_SESSION['login'] = $login;
+        $_SESSION['role'] = '';
+        //On redirige vers la route qui a provoqué la demande d'authentification
+        header('Location: index.php?route=' . $route);
+    } else {
+        echo 'Authentication error !!!';
+        exit;
+    }
+}
+
+
+/**
+ * Logout
+ */
+function logout_ctrl() {
+    unset($_SESSION);
+    session_destroy();
+    require('views/welcome_view.php');
+}
+
+

@@ -1,19 +1,31 @@
 <?php
 
-// Vérifie si l'utilisateur est connecté
+// True if user is logged (auth is right)
 function is_logged() {
-    return isset($_SESSION['login']);
+    $status = false;
+    if (isset($_SESSION['login'])) {
+        $status = true;
+    }
+    return $status;
 }
 
-// Vérifie si l'utilisateur a un rôle spécifique
+// True if user has the role $role
 function has_role(string $role) {
-    return isset($_SESSION['role']) && $_SESSION['role'] == $role;
+    $status = false;
+    
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] == $role) {
+            $status = true;
+        }
+    }
+    return $status;
 }
 
-// Redirige vers l'authentification si l'utilisateur n'a pas les droits
-function verify_grants(string $route, string $role = '') {
-    if (!has_role($role) && !($role == '' && is_logged())) {
+
+function verify_grants(string $route, string $role='') {
+    if (! has_role($role) && ! ($role == '' && is_logged())) {
         header('Location: index.php?route=auth&ask=' . $route);
         exit;
     }
+    // Nothing is done so process goes on
 }
