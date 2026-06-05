@@ -79,6 +79,11 @@
             add_utilisateurs_write_ctrl();
             break;
                   
+
+        case 'operations':
+            require('views/operations_view.php');
+            break;
+
         default:
             require('views/404_view.php');
             break;
