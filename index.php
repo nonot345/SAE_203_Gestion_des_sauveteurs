@@ -8,7 +8,7 @@
     //Loads some functions for session managment and starts the session
     require('controllers/auth_utilities.php');
     session_start();
-    var_dump($_SESSION);
+    //var_dump($_SESSION);
     
     //Erreurs à afficher SEULEMENT en phase de développement !
     error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);

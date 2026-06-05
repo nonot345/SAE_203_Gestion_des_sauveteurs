@@ -1,34 +1,30 @@
 <?php
 //session_start();
 
-// Liens de navigation (conditionnels selon session et rôle)
+// --- NAVIGATION STATIQUE (auth commentée en attendant le système de connexion) ---
 $nav = '<li><a href="index.php">Accueil</a></li>';
 
-if (is_logged()) {
-    $nav .= '<li><a href="index.php?route=planning">Planning</a></li>';
-    $nav .= '<li><a href="index.php?route=sauveteurs">Sauveteurs</a></li>';
-}
-if (has_role('gestionnaire') || has_role('administration')) {
-    $nav .= '<li><a href="index.php?route=gestion">Gestion</a></li>';
-}
-if (has_role('administration')) {
-    $nav .= '<li><a href="index.php?route=admin">Admin</a></li>';
-}
+// À DÉCOMMENTER quand auth_utilities.php sera chargé :
+// $nav .= '<li><a href="index.php?route=planning">Planning</a></li>';
+// $nav .= '<li><a href="index.php?route=sauveteurs">Sauveteurs</a></li>';
+// $nav .= '<li><a href="index.php?route=gestion">Gestion</a></li>';
+// $nav .= '<li><a href="index.php?route=admin">Admin</a></li>';
 
-if (is_logged()) {
-    $nav .= '<li><a href="index.php?route=logout" class="nav-right">Déconnexion</a></li>';
-    $session = 'Connecté : ' . htmlentities($_SESSION['login']) . ' (' . ($_SESSION['role'] ?: 'lecture') . ')';
-} else {
-    $nav .= '<li><a href="index.php?route=auth" class="nav-right">Connexion</a></li>';
-    $session = 'Non connecté';
-}
+$nav .= '<li><a href="index.php?route=planning">Planning</a></li>';
+$nav .= '<li><a href="index.php?route=sauveteurs">Sauveteurs</a></li>';
+$nav .= '<li><a href="index.php?route=gestion">Gestion</a></li>';
+$nav .= '<li><a href="index.php?route=admin">Admin</a></li>';
 
-// Notification flash
+$nav .= '<li><a href="index.php?route=auth" class="nav-right">Connexion</a></li>';
+
+// $session = 'Connecté : ' . htmlentities($_SESSION['login']) . ' (' . ($_SESSION['role'] ?: 'lecture') . ')';
+$session = 'Non connecté';
+
 $notif = '';
-if (!empty($_SESSION['notification'])) {
-    $notif = '<div id="notification">' . htmlentities($_SESSION['notification']) . '</div>';
-    unset($_SESSION['notification']);
-}
+// if (!empty($_SESSION['notification'])) {
+//     $notif = '<div id="notification">' . htmlentities($_SESSION['notification']) . '</div>';
+//     unset($_SESSION['notification']);
+// }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
