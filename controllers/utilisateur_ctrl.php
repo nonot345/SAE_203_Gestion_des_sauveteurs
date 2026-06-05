@@ -24,7 +24,7 @@ function add_utilisateurs_write_ctrl() {
         if (!preg_match('/^[a-zA-Z0-9_-]+$/', $nom) || !preg_match('/^[a-zA-Z0-9_-]+$/', $login)) {
             
             $_SESSION['notification'] = "<span style='color:red;'>Erreur : Le nom ou le login contient des caractère non autorisés.</span>";
-            require('views/add_utilisateur_form_view.php');
+            require('views/creation_compte_view.php');
             
         } else {
             
