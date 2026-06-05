@@ -1,15 +1,12 @@
-<?php
- require('views/header.php');
-   
-?>
-<meta charset="UTF-8">
+<?php require('views/header.php'); ?>
 
-<nav> 
-<a id="CRERR_COMPTES" href="../creation_compte_view.php">CRER COMPTES</a>
-<a id="MODIFIER_COMPTES" href="../modif_comptes_view.php">MODIFIER COMPTES</a>
+<nav class="sub-nav">
+    <a href="index.php?route=add_utilisateurs_form">Créer un compte</a>
+    <a href="index.php?route=modif_utilisateurs_form">Modifier un compte</a>
 </nav>
+
 <h2>Ajout d'un nouveau compte</h2>
-<form action="index.php?route=add_utilisateurs" method="post"> 
+<form action="index.php?route=add_utilisateurs" method="post">
     <p>
         Nom : <input type="text" name="nom" required>
     </p>
@@ -18,28 +15,25 @@
         Prénom : <input type="text" name="prenom" required>
     </p>
 
-
     <p>
         <label for="role">Choix du rôle :</label>
         <select name="role" id="role" required>
             <option value="">-- Sélectionnez un profil --</option>
-            <option value="GESTIONNAIRE">Gestionnaire</option>
-            <option value="LECTURE">Lecture (Responsable)</option>
-            <option value="ADMINISTRATION">Administration</option>
+            <option value="gestionnaire">Gestionnaire</option>
+            <option value="lecture">Lecture</option>
+            <option value="administration">Administration</option>
         </select>
     </p>
 
-<p>
+    <p>
         NOM DEP : <input type="text" name="nomdep" required>
-        </p>
-
-
-        <p>
-        n°tel : <input type="text" name=num_tel" required>
     </p>
-    
-    
-   <p>
+
+    <p>
+        n°tel : <input type="text" name="num_tel" required>
+    </p>
+
+    <p>
         <label for="login">Login :</label>
         <input type="text" id="login" name="login" required>
     </p>
@@ -52,8 +46,6 @@
     <p>
         <input type="submit" value="Enregistrer">
     </p>
-
 </form>
- 
 
-     <?php
+<?php require('views/footer.php'); ?>

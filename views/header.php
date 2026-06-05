@@ -1,21 +1,28 @@
 <?php
 //session_start();
 
-// --- NAVIGATION STATIQUE (auth commentée en attendant le système de connexion) ---
+// --- NAVIGATION (auth commentée en attendant le système de connexion) ---
 $nav = '<li><a href="index.php">Accueil</a></li>';
+$nav .= '<li><a href="index.php?route=operations">Opérations</a></li>';
+$nav .= '<li><a href="index.php?route=add_utilisateurs_form">Créer un compte</a></li>';
+$nav .= '<li><a href="index.php?route=modif_utilisateurs_form">Modifier un compte</a></li>';
 
-// À DÉCOMMENTER quand auth_utilities.php sera chargé :
-// $nav .= '<li><a href="index.php?route=planning">Planning</a></li>';
-// $nav .= '<li><a href="index.php?route=sauveteurs">Sauveteurs</a></li>';
-// $nav .= '<li><a href="index.php?route=gestion">Gestion</a></li>';
-// $nav .= '<li><a href="index.php?route=admin">Admin</a></li>';
-
-$nav .= '<li><a href="index.php?route=planning">Planning</a></li>';
-$nav .= '<li><a href="index.php?route=sauveteurs">Sauveteurs</a></li>';
-$nav .= '<li><a href="index.php?route=gestion">Gestion</a></li>';
-$nav .= '<li><a href="index.php?route=admin">Admin</a></li>';
-
-$nav .= '<li><a href="index.php?route=auth" class="nav-right">Connexion</a></li>';
+// À DÉCOMMENTER quand l'auth sera fonctionnelle :
+// if (is_logged()) {
+//     $nav .= '<li><a href="index.php?route=planning">Planning</a></li>';
+//     $nav .= '<li><a href="index.php?route=sauveteurs">Sauveteurs</a></li>';
+// }
+// if (has_role('gestionnaire') || has_role('administration')) {
+//     $nav .= '<li><a href="index.php?route=gestion">Gestion</a></li>';
+// }
+// if (has_role('administration')) {
+//     $nav .= '<li><a href="index.php?route=admin">Admin</a></li>';
+// }
+// if (is_logged()) {
+//     $nav .= '<li><a href="index.php?route=logout" class="nav-right">Déconnexion</a></li>';
+// } else {
+//     $nav .= '<li><a href="index.php?route=auth" class="nav-right">Connexion</a></li>';
+// }
 
 // $session = 'Connecté : ' . htmlentities($_SESSION['login']) . ' (' . ($_SESSION['role'] ?: 'lecture') . ')';
 $session = 'Non connecté';
