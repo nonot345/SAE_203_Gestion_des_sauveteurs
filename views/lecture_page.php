@@ -2,7 +2,7 @@
     require('views/header.php');
 ?>
 
-<form action="index.php?route=add_equipment" method="post">
+<form action="index.php?route=lecture" method="post">
 <table border="1" cellpadding="8" cellspacing="0">
     <thead>
         <tr>
