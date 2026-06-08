@@ -29,12 +29,10 @@
     
         case null:
             require('views/login_views.php');
-            login_form_view($route);
             break;
 
         case '':
             require('views/login_views.php');
-            login_form_view($route);
             break;
             
         case 'auth':
@@ -67,19 +65,9 @@
             modif_utilisateurs_write_ctrl();
             break;
 
-        case 'ajout_personnes':
-            require('controllers/contact_crtl.php');
-            contact_ctrl();
-            break;
-
         case 'operations':
             require('controllers/operation_ctrl.php');
             operations_form_ctrl();
-            break;
-
-        case 'add_operation':
-            require('controllers/operation_ctrl.php');
-            add_operation_write_ctrl();
             break;
 
         case 'lecture':

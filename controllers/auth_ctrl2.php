@@ -22,7 +22,21 @@ function verify_login_ctrl(?string $route) {
         session_regenerate_id(true);
         $_SESSION['login'] = $user['login'];
         $_SESSION['role']  = $user['type'];
-        header('Location: index.php?route=' . $route);
+        if ($route) {
+    header('Location: index.php?route=' . $route);
+} else {
+    switch ($user['type']) {
+        case 'admin':
+            header('Location: index.php?route=admin');
+            break;
+        case 'lecteur':
+            header('Location: index.php?route=operations');
+            break;
+        default:
+            header('Location: index.php');
+            break;
+    }
+}
         exit;
     } else {
         echo 'Erreur d\'authentification.';

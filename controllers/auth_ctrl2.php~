@@ -1,11 +1,9 @@
 <?php
-
 function login_ctrl() {
     $ask_route = null;
     if (isset($_GET['ask'])) {
         $ask_route = htmlentities($_GET['ask']);
     }
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         verify_login_ctrl($ask_route);
     } else {
@@ -14,18 +12,14 @@ function login_ctrl() {
 }
 
 function verify_login_ctrl(?string $route) {
+    require('models/connection.php');
+    require('models/user_crud.php');
     $login  = isset($_POST['login']) ? htmlentities($_POST['login']) : '';
     $passwd = isset($_POST['password']) ? $_POST['password'] : '';
-    
-    require('models/connection.php');
-	 require('models/user_crud.php');
-	
     $c = connection();
     $user = recuperation_auth($c, $login);
-
-    
-
     if ($user && password_verify($passwd, $user['passwd'])) {
+        session_regenerate_id(true);
         $_SESSION['login'] = $user['login'];
         $_SESSION['role']  = $user['type'];
         header('Location: index.php?route=' . $route);
@@ -42,7 +36,8 @@ function login_form_ctrl(?string $route) {
 }
 
 function logout_ctrl() {
-    unset($_SESSION);
+    session_unset();
     session_destroy();
+    setcookie(session_name(), '', time() - 3600, '/');
     require('views/welcome_view.php');
 }
