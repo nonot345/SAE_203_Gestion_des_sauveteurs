@@ -1,3 +1,7 @@
+<?php
+
+function planning_view(array $sauveteurs, array $creneaux, array $grille, string $date) {
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head><meta charset="UTF-8"><title>Planning</title></head>
@@ -23,5 +27,8 @@
     </tr>
     <?php endforeach; ?>
 </table>
+
 </body>
 </html>
+<?php
+}
