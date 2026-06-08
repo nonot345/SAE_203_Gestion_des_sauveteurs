@@ -14,6 +14,10 @@ function add_operation_write_ctrl() {
     $date_fin   = $_POST['date_fin'];
     $lieu       = $_POST['lieu'];
 
+    // Conversion datetime-local HTML (YYYY-MM-DDTHH:MM) → MySQL datetime (YYYY-MM-DD HH:MM:SS)
+    $date_debut = str_replace('T', ' ', $date_debut) . ':00';
+    $date_fin   = str_replace('T', ' ', $date_fin) . ':00';
+
     // Valeurs par défaut pour les clés étrangères (à adapter quand l'auth sera active)
     $en_prepa      = 0;
     $id_sauveteur  = 1;
