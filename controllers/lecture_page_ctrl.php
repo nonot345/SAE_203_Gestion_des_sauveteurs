@@ -2,7 +2,7 @@
 
 function planning_afficher_ctrl() {
     require('models/connection.php');
-    $c = connection();
+    $co = connection();
     require('models/planning_model.php');
 
     $date       = $_GET['date'] ?? date('Y-m-d');
