@@ -75,6 +75,11 @@
             operations_form_ctrl();
             break;
 
+        case 'add_operation':
+            require('controllers/operation_ctrl.php');
+            add_operation_write_ctrl();
+            break;
+
         case 'lecture':
             require('views/lecture_page.php');
             break;
