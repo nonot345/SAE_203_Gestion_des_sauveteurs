@@ -1,23 +1,15 @@
 <?php
 
-function create_sauveteur(PDO $connex, $nom, $prenom, $dep, $spe, $date, $heure, $role, $tel)
-{
-    $req = "INSERT INTO Sauveteur
-            (nom, prenom, dep, spe, ladate, lheure, role, tel)
-            VALUES
-            (:nom, :prenom, :dep, :spe, :date, :heure, :role, :tel)";
+function create_sauveteur(PDO $c, string $nom, string $prenom, string $dep, string $spe, string $date_heure, string $tel): void {
+    $req = "INSERT INTO Sauveteur (nom, prenom, departement, specialite, DateHeureEngagement, NumTel)
+            VALUES (:nom, :prenom, :dep, :spe, :date_heure, :tel)";
 
-    $prep = $connex->prepare($req);
-
+    $prep = $c->prepare($req);
     $prep->bindValue(':nom', $nom);
     $prep->bindValue(':prenom', $prenom);
     $prep->bindValue(':dep', $dep);
     $prep->bindValue(':spe', $spe);
+    $prep->bindValue(':date_heure', $date_heure);
     $prep->bindValue(':tel', $tel);
-    $prep->bindValue(':date', $date);
-    
-
     $prep->execute();
 }
-
-
