@@ -33,5 +33,3 @@ function planning_view(array $sauveteurs, array $creneaux, array $grille, string
 
 </body>
 </html>
-<?php
-}
