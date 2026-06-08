@@ -33,8 +33,5 @@ function planning_view(array $sauveteurs, array $creneaux, array $grille, string
 
 </body>
 </html>
-<<<<<<< Updated upstream
-=======
 <?php
-}
->>>>>>> Stashed changes
+
