@@ -1,63 +1,27 @@
-<?php
-    require('views/header.php');
-?>
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Planning</title></head>
+<body>
 
-<form action="index.php?route=lecture" method="post">
-<table border="1" cellpadding="8" cellspacing="0">
-    <thead>
-        <tr>
-            <th>Personnes</th>
-            <th> - </th>
-            <th> - </th>
-            <th> - </th>
-            <th> - </th>
-            <th> - </th>
-            <th> - </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>           
-        </tr>
-        <tr>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-        </tr>
-        <tr>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-        </tr>
-        
-         <tr>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-            <td><input type="text" size="15" maxlength="100"/></td>
-        </tr>
-        
-    </tbody>
+<h2>Planning du <?= $date ?></h2>
+
+<table border="1">
+    <tr>
+        <th>Nom / Prénom</th>
+        <?php foreach ($creneaux as $c): ?>
+            <th><?= $c ?></th>
+        <?php endforeach; ?>
+    </tr>
+    <?php foreach ($sauveteurs as $s): ?>
+    <tr>
+        <td><?= $s['Nom'] ?> <?= $s['Prenom'] ?></td>
+        <?php foreach ($creneaux as $c):
+            $couleur = $grille[$s['ID_Sauveteur']][$c];
+        ?>
+            <td <?= $couleur ? 'bgcolor="' . $couleur . '"' : '' ?>></td>
+        <?php endforeach; ?>
+    </tr>
+    <?php endforeach; ?>
 </table>
-</form>
-
-<?php
-    require('views/footer.php');
-?>
+</body>
+</html>
