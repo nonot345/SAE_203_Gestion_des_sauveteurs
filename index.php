@@ -65,6 +65,11 @@
             modif_utilisateurs_write_ctrl();
             break;
 
+        case 'ajout_personnes':
+            require('controllers/contact_crtl.php');
+            contact_ctrl();
+            break;
+
         case 'operations':
             require('controllers/operation_ctrl.php');
             operations_form_ctrl();

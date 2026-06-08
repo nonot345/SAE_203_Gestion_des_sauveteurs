@@ -1,9 +1,8 @@
 <?php require('views/header.php'); ?>
 
-<nav style="margin-bottom: 20px;">
-    <a href="index.php?route=operations" style="text-decoration: underline; font-weight: bold; margin-right: 15px;">Opérations</a>
-    <a href="index.php?route=ajout_personnes" style="margin-right: 15px;">Ajout personnes</a>
-    <a href="index.php?route=planning">Planning</a>
+<nav class="sub-nav">
+    <a href="index.php?route=operations">Opérations</a>
+    <a href="index.php?route=ajout_personnes">Ajout personnes</a>
 </nav>
 
 <h2>Création d'une opération</h2>
