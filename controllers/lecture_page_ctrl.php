@@ -1,64 +1,92 @@
 <?php
 
 function planning_afficher_ctrl() {
+    require('models/connection.php');
+    require('models/lecture_page_model.php');
 
-    require_once 'models/connection.php';
-    require_once 'models/lecture_page_model.php';
+    $c = connection();
 
-    $co = connection();
-
+    // Date : aujourd'hui par défaut, modifiable via ?date=YYYY-MM-DD
     $date = $_GET['date'] ?? date('Y-m-d');
+    $date_precedente = date('Y-m-d', strtotime($date . ' -1 day'));
+    $date_suivante   = date('Y-m-d', strtotime($date . ' +1 day'));
 
-    $sauveteurs = get_all_sauveteurs($co);
-    $missions   = get_missions_by_date($co, $date);
+    // Tous les sauveteurs et leurs missions du jour
+    $sauveteurs = get_all_sauveteurs($c);
+    $missions   = get_missions_by_date($c, $date);
 
-    // Couleurs
+    // Couleurs par spécialité (numéro → couleur)
     $couleurs = [
-        'Sauveteur disponible'               => '#2ecc71',
-        'Sauveteur en approche de la cavité' => '#9b59b6',
-        'Sauveteur sous terre'               => '#8B4513',
-        'Sauveteur équipe de gestion'        => '#f1c40f',
-        "Sauveteur en mission à l'extérieur" => '#e67e22',
-        'Sauveteur en repos'                 => '#3498db',
-        'Sauveteur en brancardage civière'   => '#e74c3c',
+        1 => '#e74c3c',  // Évacuation
+        2 => '#3498db',  // ASV
+        3 => '#f39c12',  // Transmission
+        4 => '#9b59b6',  // Conseiller technique
+        5 => '#2ecc71',  // Gestion
+        6 => '#8B4513',  // Désobstruction
+        7 => '#e91e63',  // Médical
+        8 => '#00bcd4',  // Ventilation
+        9 => '#95a5a6',  // Pas de spécialité
     ];
 
-    // Créneaux 8h - 20h (30 min)
+    // Créneaux 8h-20h (toutes les 30 min)
     $creneaux = [];
     for ($min = 8 * 60; $min < 20 * 60; $min += 30) {
         $creneaux[] = sprintf('%02d:%02d', intdiv($min, 60), $min % 60);
     }
 
-    // Index sauveteurs + grille vide
-    $sauveteursById = [];
-    $grille = [];
-
+    // Index des sauveteurs + couleur par spécialité
+    $sauveteurs_index = [];
     foreach ($sauveteurs as $s) {
-        $sauveteursById[$s['ID']] = $s;
-        $grille[$s['ID']] = array_fill_keys($creneaux, '');
+        $spe_num = (int) ($s['specialite'] ?? 0);
+        $s['couleur'] = $couleurs[$spe_num] ?? '#cccccc';
+        $sauveteurs_index[$s['ID']] = $s;
     }
 
-    // Remplissage des missions
+    // Grille : sauveteur_id → créneau → [couleur, en_prepa]
+    $grille = [];
+    foreach ($sauveteurs as $s) {
+        $grille[$s['ID']] = [];
+        foreach ($creneaux as $c) {
+            $grille[$s['ID']][$c] = null;
+        }
+    }
+
+    // Remplissage de la grille avec les missions
     foreach ($missions as $m) {
-
-        $id = $m['ID'];
-
-        if (!isset($grille[$id])) continue;
-
-        $specialite = $sauveteursById[$id]['Specialite'] ?? '';
-        $couleur = $couleurs[$specialite] ?? '#cccccc';
+        $id_sauv = $m['ID_Sauveteur'];
+        if (!isset($grille[$id_sauv])) continue;
 
         $debut = new DateTime($m['DateHeureDebut']);
         $fin   = new DateTime($m['DateHeureFin']);
+        $en_prepa = (bool) $m['EnPrepa'];
 
         foreach ($creneaux as $c) {
+            $debut_creneau = new DateTime($date . ' ' . $c . ':00');
+            $fin_creneau   = (clone $debut_creneau)->modify('+30 minutes');
 
-            $start = new DateTime($date . ' ' . $c . ':00');
-            $end   = (clone $start)->modify('+30 minutes');
-
-            if ($debut < $end && $fin > $start) {
-                $grille[$id][$c] = $couleur;
+            if ($debut < $fin_creneau && $fin > $debut_creneau) {
+                $grille[$id_sauv][$c] = [
+                    'couleur'  => $sauveteurs_index[$id_sauv]['couleur'],
+                    'en_prepa' => $en_prepa,
+                    'mission_id' => $m['ID'],
+                ];
             }
         }
     }
+
+    // Légende des spécialités
+    $legendes = [
+        1 => 'Évacuation',
+        2 => 'ASV',
+        3 => 'Transmission',
+        4 => 'Conseiller technique',
+        5 => 'Gestion',
+        6 => 'Désobstruction',
+        7 => 'Médical',
+        8 => 'Ventilation',
+        9 => 'Pas de spécialité',
+    ];
+
+    require('views/lecture_page.php');
+    planning_view($sauveteurs, $sauveteurs_index, $creneaux, $grille, $date, $date_precedente, $date_suivante, $couleurs, $legendes);
 }

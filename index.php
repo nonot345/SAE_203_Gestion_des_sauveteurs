@@ -83,12 +83,8 @@
             break;
 
         case 'lecture':
-            require('views/lecture_page.php');
-            planning_afficher_ctrl();
-            break;
-
-        case 'lecture_ctrl':
             require('controllers/lecture_page_ctrl.php');
+            planning_afficher_ctrl();
             break;
 
         default:
