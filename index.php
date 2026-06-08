@@ -69,6 +69,14 @@
             require('views/operations_view.php');
             break;
 
+        case 'lecture':
+            require('views/lecture_page.php');
+            break;
+
+        case 'lecture_ctrl':
+            require('controllers/lecture_page_ctrl.php');
+            break;
+
         default:
             require('views/404_view.php');
             break;
