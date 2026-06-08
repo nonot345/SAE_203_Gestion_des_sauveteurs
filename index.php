@@ -29,12 +29,12 @@
     
         case null:
             require('views/lecture_page.php');
-            lecture_ctrl();
+            lecture_page_ctrl();
             break;
 
         case '':
             require('views/lecture_page.php');
-            lecture_ctrl();
+            lecture_page_ctrl();
             break;
             
         case 'auth':
@@ -84,7 +84,7 @@
 
         case 'lecture':
             require('views/lecture_page.php');
-            lecture_ctrl();
+            lecture_page_ctrl();
             break;
 
         case 'lecture_ctrl':
