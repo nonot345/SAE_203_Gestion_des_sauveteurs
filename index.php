@@ -66,9 +66,14 @@
             break;
 
         case 'operations':
-            require('views/operations_view.php');
+            require('controllers/operation_ctrl.php');
+            operations_form_ctrl();
             break;
 
+        case 'add_operation':
+            require('controllers/operation_ctrl.php');
+            add_operation_write_ctrl();
+            break;
         default:
             require('views/404_view.php');
             break;
