@@ -28,12 +28,12 @@
 
     
         case null:
-            require('views/lecture.php');
+            require('views/lecture_page.php');
             login_form_view($route);
             break;
 
         case '':
-            require('views/lecture.php');
+            require('views/lecture_page.php');
             login_form_view($route);
             break;
             
