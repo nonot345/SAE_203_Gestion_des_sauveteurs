@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
+ini_set('display_errors', 1);
+
 function planning_view(array $sauveteurs, array $creneaux, array $grille, string $date) {
 ?>
 <!DOCTYPE html>
