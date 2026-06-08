@@ -3,7 +3,7 @@
 function planning_afficher_ctrl() {
 
     require_once 'models/connection.php';
-    require_once 'models/planning_model.php';
+    require_once 'models/lecture_page_model.php';
 
     $co = connection();
 
@@ -34,22 +34,22 @@ function planning_afficher_ctrl() {
     $grille = [];
 
     foreach ($sauveteurs as $s) {
-        $sauveteursById[$s['ID_Sauveteur']] = $s;
-        $grille[$s['ID_Sauveteur']] = array_fill_keys($creneaux, '');
+        $sauveteursById[$s['ID']] = $s;
+        $grille[$s['ID']] = array_fill_keys($creneaux, '');
     }
 
     // Remplissage des missions
     foreach ($missions as $m) {
 
-        $id = $m['ID_Sauveteur'];
+        $id = $m['ID'];
 
         if (!isset($grille[$id])) continue;
 
         $specialite = $sauveteursById[$id]['Specialite'] ?? '';
         $couleur = $couleurs[$specialite] ?? '#cccccc';
 
-        $debut = new DateTime($m['DtaHeureDebut']);
-        $fin   = new DateTime($m['DtaHeureFin']);
+        $debut = new DateTime($m['DateHeureDebut']);
+        $fin   = new DateTime($m['DateHeureFin']);
 
         foreach ($creneaux as $c) {
 
@@ -61,6 +61,4 @@ function planning_afficher_ctrl() {
             }
         }
     }
-
-    require 'views/planning_view.php';
 }

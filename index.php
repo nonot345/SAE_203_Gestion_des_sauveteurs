@@ -28,12 +28,12 @@
 
     
         case null:
-            require('views/lecture_page.php');
+            require('controllers/lecture_page_ctrl.php');
             planning_afficher_ctrl();
             break;
 
         case '':
-            require('views/lecture_page.php');
+            require('controllers/lecture_page_ctrl.php');
             planning_afficher_ctrl();
             break;
             
