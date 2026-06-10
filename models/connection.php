@@ -1,14 +1,11 @@
 <?php
 
 /**
- * Create a PDO connection
+ * Crée une connexion PDO
  * @return PDO
  */
-function connection() {
-    //Loads config from file config.php
+function connection(): PDO
+{
     require_once('config/config.php');
-    
-    //Db connection
-    $connex = new PDO('mysql:host=' . HOST . ';dbname=' . DB,USER , PASSWORD);
-    return $connex;
+    return new PDO('mysql:host=' . HOST . ';dbname=' . DB, USER, PASSWORD);
 }

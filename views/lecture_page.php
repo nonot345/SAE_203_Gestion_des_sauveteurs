@@ -1,11 +1,14 @@
 <?php
 
+/**
+ * Affichage du planning avec le tableau des créneaux
+ */
 function planning_view(array $sauveteurs, array $creneaux, array $missions_par_sauveteur, string $date)
 {
     $date_formatee = date('d/m/Y', strtotime($date));
     require('views/header.php');
 
-    // Correspondance TypeStatut (base) → couleur HTML
+    // Couleurs associées à chaque statut
     $couleurs = [
         'Sauveteur disponible'                => '#2ecc71',
         'Sauveteur en approche de la cavite'  => '#9b59b6',
@@ -40,34 +43,33 @@ function planning_view(array $sauveteurs, array $creneaux, array $missions_par_s
 
             <?php foreach ($creneaux as $creneau): ?>
                 <?php
-                // Chercher si ce sauveteur a une mission sur ce créneau
-                $statut   = null;
+                $statut = null;
                 $en_prepa = false;
 
                 $debut_creneau = new DateTime($date . ' ' . $creneau . ':00');
-                $fin_creneau   = clone $debut_creneau;
+                $fin_creneau = clone $debut_creneau;
                 $fin_creneau->modify('+30 minutes');
 
+                // On cherche si une mission couvre ce créneau
                 $liste_missions = $missions_par_sauveteur[$sauveteur['ID']] ?? [];
                 foreach ($liste_missions as $mission) {
                     $debut_mission = new DateTime($mission['DateHeureDebut']);
-                    $fin_mission   = new DateTime($mission['DateHeureFin']);
+                    $fin_mission = new DateTime($mission['DateHeureFin']);
 
                     if ($debut_mission < $fin_creneau && $fin_mission > $debut_creneau) {
-                        $statut   = $mission['TypeStatut'];
+                        $statut = $mission['TypeStatut'];
                         $en_prepa = (bool) $mission['EnPrepa'];
                         break;
                     }
                 }
 
-                // Affichage de la cellule
                 if ($statut === null) {
                     $style = '';
                     $titre = '';
                     $texte = '';
                 } else {
                     $couleur = $couleurs[$statut] ?? '#ccc';
-                    $titre   = htmlspecialchars($statut);
+                    $titre = htmlspecialchars($statut);
                     if ($en_prepa) {
                         $style = 'background:' . $couleur . '; opacity:0.4;';
                         $titre .= ' (préparation)';
@@ -88,9 +90,8 @@ function planning_view(array $sauveteurs, array $creneaux, array $missions_par_s
 
 <div class="planning-legende">
     <h3>Légende</h3>
-
     <span class="legende-item">
-        <span class="legende-couleur" style="background:#2ecc71;"></span> Sauveteur disponible
+        <span class="legende-couleur" style="background:#2ecc71;"></span> Disponible
     </span>
     <span class="legende-item">
         <span class="legende-couleur" style="background:#9b59b6;"></span> En approche de la cavité
@@ -108,7 +109,7 @@ function planning_view(array $sauveteurs, array $creneaux, array $missions_par_s
         <span class="legende-couleur" style="background:#3498db;"></span> En repos
     </span>
     <span class="legende-item">
-        <span class="legende-couleur" style="background:#e74c3c;"></span> En brancardage civière
+        <span class="legende-couleur" style="background:#e74c3c;"></span> Brancardage civière
     </span>
     <span class="legende-item">
         <span class="legende-couleur" style="background:#ccc; opacity:0.4;"></span>

@@ -1,7 +1,6 @@
 <?php
 require_once('controllers/auth_utilities.php');
 
-// --- NAVIGATION selon le rôle ---
 $nav = '';
 
 if (is_logged()) {
@@ -18,14 +17,12 @@ if (is_logged()) {
     $nav .= '<li><a href="index.php?route=logout" class="nav-right">Déconnexion</a></li>';
 }
 
-// --- BARRE DE SESSION ---
 if (is_logged()) {
     $session = 'Connecté : ' . htmlentities($_SESSION['login']) . ' (' . htmlentities($_SESSION['role']) . ')';
 } else {
     $session = 'Non connecté';
 }
 
-// --- NOTIFICATION ---
 $notif = '';
 if (!empty($_SESSION['notification'])) {
     $notif = '<div id="notification">' . htmlentities($_SESSION['notification']) . '</div>';

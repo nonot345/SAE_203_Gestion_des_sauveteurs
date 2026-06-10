@@ -1,40 +1,50 @@
 <?php
 
-function modif_utilisateurs_form_ctrl() {
+/**
+ * Affichage du formulaire de modification de compte
+ */
+function modif_utilisateurs_form_ctrl()
+{
+    // Réservé administration
     require_once('controllers/auth_utilities.php');
     verify_grants('modif_utilisateurs_form', 'administration');
+
+    // On charge la liste des comptes
     require('models/connection.php');
     $c = connection();
     require('models/modif_compte_model.php');
 
     $comptes = get_all_comptes($c);
-
-    $compte_select = null;
-    if (isset($_GET['id'])) {
-        $compte_select = get_compte_by_id($c, (int) $_GET['id']);
-    }
+    $compte_select = isset($_GET['id']) ? get_compte_by_id($c, (int) $_GET['id']) : null;
 
     require('views/modif_compte_view.php');
     modif_compte_view($comptes, $compte_select);
 }
 
-function modif_utilisateurs_write_ctrl() {
+/**
+ * Enregistrement des modifications d'un compte
+ */
+function modif_utilisateurs_write_ctrl()
+{
     require_once('controllers/auth_utilities.php');
     verify_grants('modif_utilisateurs', 'administration');
+
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         header('Location: index.php?route=modif_utilisateurs_form');
         exit;
     }
 
-    $id     = (int) $_POST['id'];
-    $nom    = htmlentities($_POST['nom']);
+    // Données du formulaire
+    $id = (int) $_POST['id'];
+    $nom = htmlentities($_POST['nom']);
     $prenom = htmlentities($_POST['prenom']);
-    $role   = htmlentities($_POST['role']);
+    $role = htmlentities($_POST['role']);
     $nomdep = htmlentities($_POST['nomdep']);
     $num_tel = htmlentities($_POST['num_tel']);
-    $login  = htmlentities($_POST['login']);
+    $login = htmlentities($_POST['login']);
     $passwd = $_POST['passwd'] ?? '';
 
+    // On met à jour dans la base
     require('models/connection.php');
     $c = connection();
     require('models/modif_compte_model.php');

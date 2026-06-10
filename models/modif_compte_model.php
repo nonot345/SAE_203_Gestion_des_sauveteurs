@@ -1,7 +1,10 @@
 <?php
 
-// Récupère tous les comptes utilisateurs
-function get_all_comptes(PDO $c): array {
+/**
+ * Récupère tous les comptes utilisateurs
+ */
+function get_all_comptes(PDO $c): array
+{
     $req = "SELECT ID, login, type, nom, prenom, nomdep, num_tel FROM Utilisateur ORDER BY nom, prenom";
     $res = $c->query($req);
     $comptes = $res->fetchAll(PDO::FETCH_ASSOC);
@@ -9,8 +12,11 @@ function get_all_comptes(PDO $c): array {
     return $comptes;
 }
 
-// Récupère un compte par son ID
-function get_compte_by_id(PDO $c, int $id): ?array {
+/**
+ * Récupère un compte par son ID
+ */
+function get_compte_by_id(PDO $c, int $id): ?array
+{
     $req = "SELECT ID, login, type, nom, prenom, nomdep, num_tel FROM Utilisateur WHERE ID = :id";
     $prep = $c->prepare($req);
     $prep->bindValue(':id', $id, PDO::PARAM_INT);
@@ -20,8 +26,11 @@ function get_compte_by_id(PDO $c, int $id): ?array {
     return $compte ?: null;
 }
 
-// Met à jour un compte utilisateur
-function update_compte(PDO $c, int $id, string $nom, string $prenom, string $role, string $nomdep, string $num_tel, string $login, string $passwd): void {
+/**
+ * Met à jour un compte (mot de passe optionnel)
+ */
+function update_compte(PDO $c, int $id, string $nom, string $prenom, string $role, string $nomdep, string $num_tel, string $login, string $passwd): void
+{
     $req = "UPDATE Utilisateur SET nom = :nom, prenom = :prenom, type = :role, nomdep = :dep, num_tel = :tel, login = :login WHERE ID = :id";
     $prep = $c->prepare($req);
     $prep->bindValue(':nom', $nom);
