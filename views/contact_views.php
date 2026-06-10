@@ -18,15 +18,15 @@
     <p>
         <label for="spe">Spécialité :</label>
         <select name="spe" id="spe">
-            <option value="1">Évacuation</option>
-            <option value="2">ASV (assistance victime)</option>
-            <option value="3">Transmission</option>
-            <option value="4">Conseiller technique (chef)</option>
-            <option value="5">Gestion</option>
-            <option value="6">Désobstruction</option>
-            <option value="7">Médical</option>
-            <option value="8">Ventilation</option>
-            <option value="9">Pas de spécialité</option>
+            <option value="Évacuation">Évacuation</option>
+            <option value="ASV (assistance victime)">ASV (assistance victime)</option>
+            <option value="Transmission">Transmission</option>
+            <option value="Conseiller technique">Conseiller technique</option>
+            <option value="Gestion">Gestion</option>
+            <option value="Désobstruction">Désobstruction</option>
+            <option value="Médical">Médical</option>
+            <option value="Ventilation">Ventilation</option>
+            <option value="Pas de spécialité">Pas de spécialité</option>
         </select>
     </p>
     <p>

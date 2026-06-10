@@ -82,10 +82,6 @@
             add_operation_write_ctrl();
             break;
 
-        case 'lecture':
-            require('controllers/lecture_page_ctrl.php');
-            planning_afficher_ctrl();
-            break;
 
         default:
             require('views/404_view.php');

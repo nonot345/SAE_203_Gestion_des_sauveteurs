@@ -5,7 +5,6 @@
 $nav = '<li><a href="index.php">Accueil</a></li>';
 $nav .= '<li><a href="index.php?route=operations">Opérations</a></li>';
 $nav .= '<li><a href="index.php?route=modif_utilisateurs_form">Gestion des comptes</a></li>';
-$nav .= '<li><a href="index.php?route=lecture">Planning</a></li>';
 
 // À DÉCOMMENTER quand l'auth sera fonctionnelle :
 // if (is_logged()) {
