@@ -32,6 +32,7 @@ function verify_login_ctrl(?string $route)
 
     if ($user && password_verify($passwd, $user['passwd'])) {
         session_regenerate_id(true);
+        $_SESSION['id']    = $user['ID'];
         $_SESSION['login'] = $user['login'];
         $_SESSION['role']  = $user['type'];
 

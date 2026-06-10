@@ -1,5 +1,11 @@
 <?php
 
+function get_statuts(PDO $pdo): array
+{
+    $sql = "SELECT ID, TypeStatut FROM Statut ORDER BY TypeStatut";
+    return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+}
+
 function get_sauveteurs(PDO $pdo): array
 {
     $sql = "SELECT ID, nom, prenom, specialite

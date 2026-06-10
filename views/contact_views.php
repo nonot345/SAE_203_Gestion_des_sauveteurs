@@ -1,6 +1,11 @@
 <?php require('views/header.php'); ?>
 
-<h2>Ajout de personnes</h2>
+<nav class="sub-nav">
+    <a href="index.php?route=operations">Nouvelle mission</a>
+    <a href="index.php?route=ajout_personnes">Ajout sauveteur</a>
+</nav>
+
+<h2>Ajout d'un sauveteur</h2>
 
 <form action="index.php?route=ajout_personnes" method="post">
     <p>

@@ -8,7 +8,7 @@ if (is_logged()) {
     $nav .= '<li><a href="index.php?route=planning">Accueil</a></li>';
 
     if (has_any_role(['gestionnaire', 'administration'])) {
-        $nav .= '<li><a href="index.php?route=operations">Opérations</a></li>';
+        $nav .= '<li><a href="index.php?route=operations">Missions</a></li>';
     }
 
     if (has_role('administration')) {
