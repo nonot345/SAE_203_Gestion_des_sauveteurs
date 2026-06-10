@@ -1,21 +1,22 @@
 <?php
 
-// Récupère tous les sauveteurs
-function get_all_sauveteurs(PDO $c): array {
-    $req = "SELECT ID, nom, prenom, specialite FROM Sauveteur ORDER BY nom, prenom";
-    return $c->query($req)->fetchAll(PDO::FETCH_ASSOC);
+function get_sauveteurs(PDO $pdo): array
+{
+    $sql = "SELECT ID, nom, prenom, specialite
+            FROM Sauveteur
+            ORDER BY nom, prenom";
+    return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Récupère les missions d'une date donnée
-function get_missions_by_date(PDO $c, string $date): array {
-    $req = "SELECT ID, DateHeureDebut, DateHeureFin, ID_Sauveteur, EnPrepa
-            FROM Mission
-            WHERE DATE(DateHeureDebut) = :date
-               OR DATE(DateHeureFin)   = :date
-            ORDER BY DateHeureDebut";
-
-    $stmt = $c->prepare($req);
-    $stmt->bindValue(':date', $date);
-    $stmt->execute();
+function get_missions_planning(PDO $pdo, string $date): array
+{
+    $sql = "SELECT m.ID_Sauveteur, m.DateHeureDebut, m.DateHeureFin, m.EnPrepa, s.TypeStatut
+            FROM Mission m
+            JOIN Statut s ON m.ID_statut = s.ID
+            WHERE DATE(m.DateHeureDebut) = :date
+               OR DATE(m.DateHeureFin)   = :date
+            ORDER BY m.ID_Sauveteur, m.DateHeureDebut";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':date' => $date]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }

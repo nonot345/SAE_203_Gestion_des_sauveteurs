@@ -38,7 +38,7 @@ $notif = '';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSF — Gestion des sauveteurs</title>
+    <title>SSF - Gestion des sauveteurs</title>
     <link rel="stylesheet" type="text/css" href="css/global.css">
 </head>
 
@@ -47,7 +47,7 @@ $notif = '';
     <div class="header-top">
         <a href="index.php">
             <img src="images/logo_ssf.png" alt="Logo SSF">
-            <span>Spéléo-Secours Français — Gestion des sauveteurs</span>
+            <span>Spéléo-Secours Français - Gestion des sauveteurs</span>
         </a>
     </div>
 
