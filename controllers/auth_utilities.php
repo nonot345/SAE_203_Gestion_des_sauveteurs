@@ -22,6 +22,15 @@ function has_role(string $role) {
 }
 
 
+// True if user has at least one of the given roles
+function has_any_role(array $roles): bool
+{
+    if (!isset($_SESSION['role'])) {
+        return false;
+    }
+    return in_array($_SESSION['role'], $roles, true);
+}
+
 function verify_grants(string $route, string $role='') {
     if (! has_role($role) && ! ($role == '' && is_logged())) {
         header('Location: index.php?route=auth&ask=' . $route);

@@ -1,10 +1,20 @@
 <?php
 
 function operations_form_ctrl() {
+    require('controllers/auth_utilities.php');
+    if (!has_any_role(['gestionnaire', 'administration'])) {
+        header('Location: index.php?route=auth&ask=operations');
+        exit;
+    }
     require('views/operations_view.php');
 }
 
 function add_operation_write_ctrl() {
+    require('controllers/auth_utilities.php');
+    if (!has_any_role(['gestionnaire', 'administration'])) {
+        header('Location: index.php?route=auth&ask=operations');
+        exit;
+    }
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         header('Location: index.php?route=operations');
         exit;

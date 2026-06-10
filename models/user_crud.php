@@ -2,7 +2,7 @@
 
 
 
-function recuperation_auth(PDO $connex, string $login):array {
+function recuperation_auth(PDO $connex, string $login):?array {
 	 require_once('config/config.php');
     $req = "SELECT login, passwd, type FROM Utilisateur WHERE login = :login";
     

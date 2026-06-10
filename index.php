@@ -28,15 +28,20 @@
 
     
         case null:
+            require('controllers/auth_ctrl2.php');
+            login_ctrl();
+            break;
+
+        case '':
+            require('controllers/auth_ctrl2.php');
+            login_ctrl();
+            break;
+
+        case 'planning':
             require('controllers/lecture_page_ctrl.php');
             planning_afficher_ctrl();
             break;
 
-        case '':
-            require('controllers/lecture_page_ctrl.php');
-            planning_afficher_ctrl();
-            break;
-            
         case 'auth':
             require('controllers/auth_ctrl2.php');
             login_ctrl();

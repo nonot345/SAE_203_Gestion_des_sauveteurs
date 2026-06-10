@@ -1,10 +1,14 @@
 <?php
 
 function add_utilisateurs_form_ctrl() {
+    require('controllers/auth_utilities.php');
+    verify_grants('add_utilisateurs_form', 'administration');
     require('views/creation_compte_view.php');
 }
 
 function add_utilisateurs_write_ctrl() {
+    require('controllers/auth_utilities.php');
+    verify_grants('add_utilisateurs', 'administration');
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         header('Location: index.php?route=add_utilisateurs_form');
         exit;
