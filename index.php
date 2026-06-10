@@ -4,7 +4,13 @@
      * Vincent Verdon - 20240604
      */
 
- 
+    
+    //Loads some functions for session managment and starts the session
+    require('controllers/auth_utilities.php');
+    session_start();
+    //var_dump($_SESSION);
+    
+
     //The requested route
     $route = null;
     if (isset($_GET['route'])) {
