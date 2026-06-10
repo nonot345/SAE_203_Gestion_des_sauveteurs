@@ -2,7 +2,7 @@
 
 function planning_afficher_ctrl()
 {
-    require('controllers/auth_utilities.php');
+    require_once('controllers/auth_utilities.php');
     verify_grants('planning');
     require('models/connection.php');
     require('models/lecture_page_model.php');

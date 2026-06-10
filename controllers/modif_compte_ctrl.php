@@ -1,7 +1,7 @@
 <?php
 
 function modif_utilisateurs_form_ctrl() {
-    require('controllers/auth_utilities.php');
+    require_once('controllers/auth_utilities.php');
     verify_grants('modif_utilisateurs_form', 'administration');
     require('models/connection.php');
     $c = connection();
@@ -19,7 +19,7 @@ function modif_utilisateurs_form_ctrl() {
 }
 
 function modif_utilisateurs_write_ctrl() {
-    require('controllers/auth_utilities.php');
+    require_once('controllers/auth_utilities.php');
     verify_grants('modif_utilisateurs', 'administration');
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         header('Location: index.php?route=modif_utilisateurs_form');

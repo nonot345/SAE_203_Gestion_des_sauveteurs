@@ -1,7 +1,7 @@
 <?php
 
 function contact_ctrl() {
-    require('controllers/auth_utilities.php');
+    require_once('controllers/auth_utilities.php');
     if (!has_any_role(['gestionnaire', 'administration'])) {
         header('Location: index.php?route=auth&ask=ajout_personnes');
         exit;

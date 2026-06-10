@@ -1,7 +1,7 @@
 <?php
 
 function operations_form_ctrl() {
-    require('controllers/auth_utilities.php');
+    require_once('controllers/auth_utilities.php');
     if (!has_any_role(['gestionnaire', 'administration'])) {
         header('Location: index.php?route=auth&ask=operations');
         exit;
@@ -10,7 +10,7 @@ function operations_form_ctrl() {
 }
 
 function add_operation_write_ctrl() {
-    require('controllers/auth_utilities.php');
+    require_once('controllers/auth_utilities.php');
     if (!has_any_role(['gestionnaire', 'administration'])) {
         header('Location: index.php?route=auth&ask=operations');
         exit;

@@ -11,6 +11,6 @@ function recuperation_auth(PDO $connex, string $login):?array {
     $prep->execute();
     $auth = $prep->fetch(PDO::FETCH_ASSOC);
     $prep->closeCursor();
-    return $auth;
+    return $auth ?: null;
  }
   
