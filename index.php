@@ -3,8 +3,6 @@
 require('controllers/auth_utilities.php');
 session_start();
 
-error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
-ini_set('display_errors', 1);
 
 $route = null;
 if (isset($_GET['route'])) {
